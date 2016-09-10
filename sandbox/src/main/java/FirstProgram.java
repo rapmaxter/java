@@ -2,6 +2,9 @@ public class FirstProgram
 {
 public static void main(String[] args)
 {
-System.out.print("Hello, world!");
+    String a = "I want to be ";
+    String b = "a White-Box tester";
+    System.out.print(a + b);
 }
+
 }
