@@ -14,3 +14,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
 sandbox/dir.txt
+out/production/home_work/Main1.class
+out/production/home_work/Point.class
+home_work/src/Main1.java
+home_work/src/Point.java
