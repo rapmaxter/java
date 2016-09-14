@@ -20,7 +20,7 @@ public class Main2 {
 
   public static double distance(Point p1, Point p2) {
 
-    double x = (p2.x2 - p1.x1) * (p2.x2 - p1.x1) + (p1.y2 + p2.y1) * (p1.y2 + p2.y1);
+    double x = (p2.x2 - p1.x1) * (p2.x2 - p1.x1) + (p1.y2 - p2.y1) * (p1.y2 - p2.y1);
     return Math.sqrt(x);
   }
 
