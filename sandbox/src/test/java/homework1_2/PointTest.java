@@ -1,5 +1,6 @@
 package homework1_2;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -13,6 +14,6 @@ public class PointTest {
 
     Point p2 = new Point(3,1);
 
-    assert p1.distance(p2) == 2;
+    Assert.assertEquals(p1.distance(p2), 2);
   }
 }
