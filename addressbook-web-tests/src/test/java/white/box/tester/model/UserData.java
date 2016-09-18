@@ -1,12 +1,12 @@
-package white.box.tester;
+package white.box.tester.model;
 
-public class testData {
+public class UserData {
   private final String firstname;
   private final String lastname;
   private final String address;
   private final String phone;
 
-  public testData(String firstname, String lastname, String address, String phone) {
+  public UserData(String firstname, String lastname, String address, String phone) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.address = address;
