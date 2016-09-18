@@ -1,4 +1,4 @@
-package white.box;
+package white.box.tester;
 
 public class testData {
   private final String firstname;
