@@ -10,12 +10,13 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Max on 9/18/2016.
  */
-public class ApplicationManage extends ContactHelper {
+public class ApplicationManage {
 
   FirefoxDriver wd;
-  GroupHelper groupHelper;
 
   private NavigationHelper navigationHelper;
+  private ContactHelper contactHelper;
+  private GroupHelper groupHelper;
 
   public static boolean isAlertPresent(FirefoxDriver wd) {
     try {
@@ -32,6 +33,7 @@ public class ApplicationManage extends ContactHelper {
     wd.get("http://localhost/addressbook/addressbook/import.php");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
+    contactHelper = new ContactHelper(wd);
     login("admin", "secret");
   }
 
@@ -54,34 +56,15 @@ public class ApplicationManage extends ContactHelper {
     wd.findElement(By.linkText("Logout")).click();
   }
 
-  public void submitCreating() {
-    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
-  }
-
-  public void fillUserField(UserData UserData) {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(UserData.getFirstname());
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(UserData.getLastname());
-    wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(UserData.getAddress());
-    wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(UserData.getPhone());
-  }
-
-  public void newUser() {
-    wd.findElement(By.linkText("add new")).click();
-  }
-
   public GroupHelper getGroupHelper() {
     return groupHelper;
   }
 
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
+  }
+
+  public ContactHelper getContactHelper() {
+    return contactHelper;
   }
 }

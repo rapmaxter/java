@@ -9,9 +9,9 @@ public class user extends TestBase {
   @Test
   public void user() {
 
-    app.newUser();
-    app.fillUserField(new UserData("Test1", "Test2", "Test3", "01"));
-    app.submitCreating();
+    app.getContactHelper().newUser();
+    app.getContactHelper().fillUserField(new UserData("Test1", "Test2", "Test3", "01"));
+    app.getContactHelper().submitCreating();
     app.logoutUser();
   }
 
