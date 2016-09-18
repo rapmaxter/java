@@ -7,12 +7,13 @@ import white.box.tester.model.UserData;
 /**
  * Created by Max on 9/18/2016.
  */
-public class ContactHelper {
-  private FirefoxDriver wd;
+public class ContactHelper extends HelperBase {
+
 
   public ContactHelper(FirefoxDriver wd) {
 
-    this.wd = wd;
+
+    super(wd);
   }
 
   public void submitCreating() {
