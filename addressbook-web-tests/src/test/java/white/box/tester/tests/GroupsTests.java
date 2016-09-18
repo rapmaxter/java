@@ -10,11 +10,11 @@ public class GroupsTests extends TestBase {
   @Test
   public void testsGroups() {
 
-    app.gotoGroupPage();
-    app.initGroupCreation();
-    app.fillGroup(new GroupData("Test2", "Test2", "header1", "Test3"));
-    app.submitGroupCreation();
-    app.returnGroupPage();
+    app.getNavigationHelper().gotoGroupPage();
+    app.getGroupHelper().initGroupCreation();
+    app.getGroupHelper().fillGroup(new GroupData("Test2", "Test2", "header1", "Test3"));
+    app.getGroupHelper().submitGroupCreation();
+    app.getGroupHelper().returnGroupPage();
   }
 
 }
