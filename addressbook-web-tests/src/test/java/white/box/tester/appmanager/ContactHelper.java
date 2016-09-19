@@ -47,5 +47,18 @@ public class ContactHelper extends HelperBase {
 
   public void deleteUser() {
     wd.findElement(By.xpath("//div[@id='content']/form[2]/input[2]")).click();
+    }
+
+  public void initUser() {
+    if (!wd.findElement(By.id("11")).isSelected())
+      wd.findElement(By.id("11")).click();
+  }
+
+  public void deleteUser1() {
+    wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
+  }
+
+  public void approveAllarm() {
+    wd.switchTo().alert().accept();
   }
 }
