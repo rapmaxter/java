@@ -25,6 +25,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillUserField(UserData UserData) {
+    type(By.name("firstname"), UserData.getLastname());
     type(By.name("lastname"), UserData.getLastname());
     type(By.name("address"), UserData.getAddress());
     type(By.name("home"), UserData.getPhone());
@@ -39,4 +40,10 @@ public class ContactHelper extends HelperBase {
   public void newUser() {
     click(By.linkText("add new"));
   }
-}
+
+  public void initModification() {
+    wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
+  }
+
+
+  }
