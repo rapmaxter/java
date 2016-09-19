@@ -19,4 +19,13 @@ public class NavigationHelper extends HelperBase  {
     wd.findElement(By.linkText("home")).click();
   }
 
+  public void nameGroupeselected() {
+
+    if (!wd.findElement(By.name("selected[]")).isSelected())
+      wd.findElement(By.name("selected[]")).click();
+  }
+
+  public void groupedelete() {
+    wd.findElement(By.xpath("//div[@id='content']/form/input[5]")).click();
+  }
 }
