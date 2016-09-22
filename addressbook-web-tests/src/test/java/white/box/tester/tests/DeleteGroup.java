@@ -13,7 +13,7 @@ public class DeleteGroup extends TestBase {
 
     app.getNavigationHelper().gotoGroupPage();
     app.getNavigationHelper().nameGroupeselected();
-    app.getNavigationHelper().groupedelete();
+    app.getGroupHelper().groupeDelete();
     app.getGroupHelper().returnGroupPage();
   }
 

@@ -1,5 +1,6 @@
 package white.box.tester.tests;
 
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import white.box.tester.appmanager.ApplicationManage;
@@ -9,7 +10,7 @@ import white.box.tester.appmanager.ApplicationManage;
  */
 public class TestBase {
 
-  protected final ApplicationManage app = new ApplicationManage();
+  protected final ApplicationManage app = new ApplicationManage(BrowserType.FIREFOX);
 
   @BeforeMethod
   public void setUp() throws Exception {
@@ -17,7 +18,7 @@ public class TestBase {
   }
 
   @AfterMethod
-  public void tearDown() {
+  public void tearDown()  {
     app.stop();
   }
 

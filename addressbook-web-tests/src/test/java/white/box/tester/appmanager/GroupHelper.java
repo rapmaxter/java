@@ -2,6 +2,7 @@ package white.box.tester.appmanager;
 
 import com.sun.javafx.binding.ExpressionHelperBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import white.box.tester.model.GroupData;
 
@@ -10,7 +11,7 @@ import white.box.tester.model.GroupData;
  */
 public class GroupHelper extends HelperBase {
 
-  public GroupHelper(FirefoxDriver wd) {
+  public GroupHelper(WebDriver wd) {
     super(wd);
   }
 
@@ -42,5 +43,9 @@ public class GroupHelper extends HelperBase {
   public void submitGroupModification() { click(By.name("update"));
   }
 
+  public void groupeDelete() {
+    wd.findElement(By.xpath("//div[@id='content']/form/input[5]")).click();
+
+  }
 
 }

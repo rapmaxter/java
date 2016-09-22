@@ -1,6 +1,7 @@
 package white.box.tester.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
@@ -8,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class NavigationHelper extends HelperBase  {
 
-  public NavigationHelper(FirefoxDriver wd) {
+  public NavigationHelper(WebDriver wd) {
     super(wd);
   }
 
@@ -25,7 +26,4 @@ public class NavigationHelper extends HelperBase  {
       wd.findElement(By.name("selected[]")).click();
   }
 
-  public void groupedelete() {
-    wd.findElement(By.xpath("//div[@id='content']/form/input[5]")).click();
-  }
 }
