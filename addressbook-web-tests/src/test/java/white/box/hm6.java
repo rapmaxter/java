@@ -23,17 +23,18 @@ public class hm6 {
     
     @Test
     public void hm6() {
-        wd.get("http://localhost/addressbook/addressbook/group.php");
-        wd.findElement(By.name("pass")).click();
+        wd.get("http://localhost/addressbook/addressbook/");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys("admin");
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
-        wd.findElement(By.cssSelector("body")).click();
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-        wd.findElement(By.linkText("groups")).click();
+        if (!wd.findElement(By.id("10")).isSelected()) {
+            wd.findElement(By.id("10")).click();
+        }
+        wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
     }
     
     @AfterMethod

@@ -9,7 +9,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import white.box.tester.model.UserData;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -38,11 +37,11 @@ public class ApplicationManage {
   }
 
   public void init() {
-      if (browser.equals(BrowserType.FIREFOX)){
+      if (browser == BrowserType.FIREFOX){
       wd = new FirefoxDriver();
-    } else if (browser.equals(BrowserType.CHROME)){
+    } else if (browser == BrowserType.CHROME){
       wd = new ChromeDriver();
-    }else if (browser.equals(BrowserType.IE)){
+    }else if (browser == BrowserType.IE){
       wd = new InternetExplorerDriver();
     }
 
