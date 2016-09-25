@@ -11,10 +11,10 @@ public class GroupModificationTests extends TestBase   {
   @Test
   public void testGroupModification () {
 
-    app.getNavigationHelper().gotoHomePage();
+    app.getNavigationHelper().gotoGroupPage();
     app.getGroupHelper().selectGroup();
-    app.getGroupHelper().initModification();
-    app.getGroupHelper().fillGroup(new GroupData("Test3", "Test3", "header3", "Test5"));
+    app.getGroupHelper().initGroupModification();
+    app.getGroupHelper().fillGroup(new GroupData("Test2", "header3", "Test5"));
     app.getGroupHelper().submitGroupModification();
   }
 }

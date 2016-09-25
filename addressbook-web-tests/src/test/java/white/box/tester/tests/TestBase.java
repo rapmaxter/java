@@ -10,7 +10,7 @@ import white.box.tester.appmanager.ApplicationManage;
  */
 public class TestBase {
 
-  protected final ApplicationManage app = new ApplicationManage(BrowserType.FIREFOX);
+  protected final ApplicationManage app = new ApplicationManage(BrowserType.CHROME);
 
   @BeforeMethod
   public void setUp() throws Exception {
