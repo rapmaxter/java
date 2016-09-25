@@ -3,13 +3,11 @@ package white.box.tester.model;
 public class GroupData {
   private final String name;
   private final String header;
-  private final String header1;
-  private final String footer;
+    private final String footer;
 
-  public GroupData(String name, String header, String header1, String footer) {
+  public GroupData(String name, String header, String footer) {
     this.name = name;
     this.header = header;
-    this.header1 = header1;
     this.footer = footer;
   }
 
@@ -21,11 +19,7 @@ public class GroupData {
     return header;
   }
 
-  public String getHeader1() {
-    return header1;
-  }
-
-  public String getFooter() {
+   public String getFooter() {
     return footer;
   }
 }
