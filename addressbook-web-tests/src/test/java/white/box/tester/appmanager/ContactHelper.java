@@ -51,8 +51,8 @@ public class ContactHelper extends HelperBase {
     }
 
   public void initUser() {
-    if (!wd.findElement(By.id("11")).isSelected())
-      wd.findElement(By.id("11")).click();
+    if (!wd.findElement(By.id("33")).isSelected())
+      wd.findElement(By.id("33")).click();
   }
 
   public void deleteUser1() {
@@ -61,5 +61,15 @@ public class ContactHelper extends HelperBase {
 
   public void approveAllarm() {
     wd.switchTo().alert().accept();
+  }
+
+  public void createUser(UserData user) {
+    newUser();
+    fillUserField(user);
+    submitCreating();
+  }
+
+  public boolean isThereAUser() {
+    return isElementPresent(By.name("selected[]"));
   }
 }

@@ -10,11 +10,16 @@ public class UserModificationTests extends TestBase {
 
   @Test
 
-  public void testUserModification () {
+  public void testUserModification() {
 
     app.getNavigationHelper().gotoHomePage();
-    app.getContactHelper().initModification();
-    app.getContactHelper().fillUserField(new UserData("Test23", "Test212", "Test31", "0133"));
-    app.getContactHelper().submitCreating();
+    if (!app.getContactHelper().isThereAUser()) {
+      app.getContactHelper().createUser(new UserData("Test1", "Test2", "Test3", "01"));
+    }
+
+      app.getNavigationHelper().gotoHomePage();
+      app.getContactHelper().initModification();
+      app.getContactHelper().fillUserField(new UserData("Test23", "Test212", "Test31", "0133"));
+      app.getContactHelper().submitCreating();
   }
 }
