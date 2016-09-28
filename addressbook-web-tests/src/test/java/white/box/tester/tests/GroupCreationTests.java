@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
 
 
-public class GroupsTests extends TestBase {
+public class GroupCreationTests extends TestBase {
 
   @Test
   public void testsGroups() {

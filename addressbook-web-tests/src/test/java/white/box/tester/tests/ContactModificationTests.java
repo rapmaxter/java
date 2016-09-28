@@ -6,7 +6,7 @@ import white.box.tester.model.UserData;
 /**
  * Created by Max on 9/19/2016.
  */
-public class UserModificationTests extends TestBase {
+public class ContactModificationTests extends TestBase {
 
   @Test
 

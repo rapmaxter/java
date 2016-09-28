@@ -6,7 +6,7 @@ import white.box.tester.model.UserData;
 /**
  * Created by Max on 9/19/2016.
  */
-public class DeleteUser extends TestBase {
+public class ContactDeletingTests extends TestBase {
 
   @Test
   public void testDeleteUser() {
@@ -19,5 +19,8 @@ public class DeleteUser extends TestBase {
       app.getContactHelper().initModification();
       app.getContactHelper().deleteUser();
     }
+    app.getNavigationHelper().gotoHomePage();
+    app.getContactHelper().initModification();
+    app.getContactHelper().deleteUser();
   }
 }

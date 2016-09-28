@@ -6,7 +6,7 @@ import white.box.tester.model.GroupData;
 /**
  * Created by Max on 9/19/2016.
  */
-public class DeleteGroup extends TestBase {
+public class GroupDeletingTests extends TestBase {
 
   @Test
   public void testsGroups() {

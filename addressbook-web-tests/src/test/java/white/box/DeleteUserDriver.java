@@ -1,6 +1,7 @@
-package white.box.tester.tests;
+package white.box;
 
 import org.testng.annotations.Test;
+import white.box.tester.tests.TestBase;
 
 /**
  * Created by Max on 9/19/2016.

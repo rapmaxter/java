@@ -3,7 +3,7 @@ package white.box.tester.tests;
 import org.testng.annotations.Test;
 import white.box.tester.model.UserData;
 
-public class user extends TestBase {
+public class ContactCreationTests extends TestBase {
 
 
   @Test

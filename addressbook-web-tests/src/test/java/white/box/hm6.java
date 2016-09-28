@@ -25,9 +25,9 @@ public class hm6 {
     public void hm6() {
         wd.get("http://localhost/addressbook/addressbook/group.php");
         wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys("admin");
+        wd.findElement(By.name("ContactCreationTests")).click();
+        wd.findElement(By.name("ContactCreationTests")).clear();
+        wd.findElement(By.name("ContactCreationTests")).sendKeys("admin");
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
