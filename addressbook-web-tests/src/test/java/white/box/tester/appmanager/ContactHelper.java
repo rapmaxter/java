@@ -72,4 +72,16 @@ public class ContactHelper extends HelperBase {
   public boolean isThereAUser() {
     return isElementPresent(By.name("selected[]"));
   }
+
+  public void contactDeleting() {
+
+    initModification();
+    deleteUser();
+  }
+
+  public void contactModification() {
+    initModification();
+    fillUserField(new UserData("Test23", "Test212", "Test31", "0133"));
+    submitCreating();
+  }
 }

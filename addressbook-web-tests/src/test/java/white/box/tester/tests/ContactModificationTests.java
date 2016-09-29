@@ -18,8 +18,7 @@ public class ContactModificationTests extends TestBase {
     }
 
       app.getNavigationHelper().gotoHomePage();
-      app.getContactHelper().initModification();
-      app.getContactHelper().fillUserField(new UserData("Test23", "Test212", "Test31", "0133"));
-      app.getContactHelper().submitCreating();
+      app.getContactHelper().contactModification();
+
   }
 }

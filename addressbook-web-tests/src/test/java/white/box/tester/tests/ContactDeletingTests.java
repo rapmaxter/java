@@ -16,11 +16,10 @@ public class ContactDeletingTests extends TestBase {
        app.getContactHelper().createUser(new UserData("Test1", "Test2", "Test3", "01"));
 
       app.getNavigationHelper().gotoHomePage();
-      app.getContactHelper().initModification();
-      app.getContactHelper().deleteUser();
+      app.getContactHelper().contactDeleting();
+
     }
     app.getNavigationHelper().gotoHomePage();
-    app.getContactHelper().initModification();
-    app.getContactHelper().deleteUser();
+    app.getContactHelper().contactDeleting();
   }
 }
