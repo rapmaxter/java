@@ -20,12 +20,15 @@ public class GroupDeletingTests extends TestBase {
       app.getGroupHelper().createGroup(new GroupData("Test3", null, "Test3"));
     }
     List<GroupData> before = app.getGroupHelper().getGroupList();
-       app.getGroupHelper().selectGroup(before.size() - 1); // 2 its 3 group. "Before - 1" its last Group
+    app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().groupeDeleting();
     List<GroupData> after = app.getGroupHelper().getGroupList();
-    Assert.assertEquals(after.size(), before.size() - 1); // Assert that was removed some of group
+    Assert.assertEquals(after.size(), before.size() - 1);
 
+    before.remove(before.size() - 1);
+    Assert.assertEquals(before, after);
+    }
   }
 
-}
+
 
