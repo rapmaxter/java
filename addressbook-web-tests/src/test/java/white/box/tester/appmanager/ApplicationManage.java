@@ -38,8 +38,8 @@ public class ApplicationManage {
   }
 
   public void init() {
-      if (browser.equals(BrowserType.FIREFOX)){
-      wd = new FirefoxDriver();
+      if (browser.equals(BrowserType.FIREFOX)){   // 	 choice browser
+       wd = new FirefoxDriver();
     } else if (browser.equals(BrowserType.CHROME)){
       wd = new ChromeDriver();
     }else if (browser.equals(BrowserType.IE)){
@@ -47,7 +47,7 @@ public class ApplicationManage {
     }
 
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    wd.get("http://localhost/addressbook/addressbook/import.php");
+    wd.get("http://localhost/addressbook/addressbook/import.php");   // start page
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     contactHelper = new ContactHelper(wd);
