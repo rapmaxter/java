@@ -1,18 +1,27 @@
 package white.box.tester.model;
 
 public class UserData {
+  private int id;
   private final String firstname;
   private final String lastname;
   private final String address;
   private final String phone;
 
   public UserData(String firstname, String lastname, String address, String phone) {
+    this.id = 0;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.address = address;
+    this.phone = phone;
+
+  }
+  public UserData(int id, String firstname, String lastname, String address, String phone) {
+    this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
     this.address = address;
     this.phone = phone;
   }
-
 
   public String getFirstname() {
     return firstname;
@@ -30,10 +39,19 @@ public class UserData {
     return phone;
   }
 
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
   @Override
   public String toString() {
     return "UserData{" +
-            "firstname='" + firstname + '\'' +
+            "id='" + id + '\'' +
+            ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
             '}';
   }
@@ -45,6 +63,7 @@ public class UserData {
 
     UserData userData = (UserData) o;
 
+    if (id != userData.id) return false;
     if (firstname != null ? !firstname.equals(userData.firstname) : userData.firstname != null) return false;
     return lastname != null ? lastname.equals(userData.lastname) : userData.lastname == null;
 
@@ -52,7 +71,8 @@ public class UserData {
 
   @Override
   public int hashCode() {
-    int result = firstname != null ? firstname.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }

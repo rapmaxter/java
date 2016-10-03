@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import white.box.tester.model.UserData;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -23,10 +24,15 @@ public class ContactModificationTests extends TestBase {
       app.getNavigationHelper().gotoHomePage();
     List<UserData> before = app.getContactHelper().getContactList();
     app.getContactHelper().initModification(before.size() - 1);
-    app.getContactHelper().fillUserField(new UserData("Test23", "Test212", "Test31", "0133"));
+    UserData user = new UserData(before.get(before.size() - 1).getId(), "Test23", "Test212", "Test31", "0133");
+    app.getContactHelper().fillUserField(user);
     app.getContactHelper().submitCreating();
     app.getNavigationHelper().gotoHomePage();
     List<UserData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
+
+    before.remove(before.size() - 1);
+    before.add(user);
+    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
 }
