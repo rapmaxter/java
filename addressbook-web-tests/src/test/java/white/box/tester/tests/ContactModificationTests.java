@@ -23,7 +23,8 @@ public class ContactModificationTests extends TestBase {
       app.getNavigationHelper().gotoHomePage();
     List<UserData> before = app.getContactHelper().getContactList();
     app.getContactHelper().initModification(before.size() - 1);
-    app.getContactHelper().contactModification();
+    app.getContactHelper().fillUserField(new UserData("Test23", "Test212", "Test31", "0133"));
+    app.getContactHelper().submitCreating();
     app.getNavigationHelper().gotoHomePage();
     List<UserData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());

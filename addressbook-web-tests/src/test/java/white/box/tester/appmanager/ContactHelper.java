@@ -83,18 +83,12 @@ public class ContactHelper extends HelperBase {
    deleteUser();
   }
 
-  public void contactModification() {
-
-    fillUserField(new UserData("Test23", "Test212", "Test31", "0133"));
-    submitCreating();
-  }
-
   public List<UserData> getContactList() {
     List<UserData> contacts = new ArrayList<UserData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
     for (WebElement element : elements) {
       String name = element.getText();
-      UserData entry = new UserData(name, null, null, null);
+      UserData entry = new UserData(name, name, null, null);
       contacts.add(entry);
     }
     return contacts;
