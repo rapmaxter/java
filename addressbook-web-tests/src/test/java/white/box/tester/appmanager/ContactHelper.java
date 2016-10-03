@@ -2,8 +2,12 @@ package white.box.tester.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import white.box.tester.model.UserData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Max on 9/18/2016.
@@ -42,17 +46,19 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void initModification() {
+  public void initModification(int index) {
+
+    //wd.findElements(By.name("selected[]")).get(index).click();
     wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
   }
 
   public void deleteUser() {
     wd.findElement(By.xpath("//div[@id='content']/form[2]/input[2]")).click();
-    }
+  }
 
   public void initUser() {
-    if (!wd.findElement(By.id("33")).isSelected())
-      wd.findElement(By.id("33")).click();
+    if (!wd.findElement(By.id("42")).isSelected())
+      wd.findElement(By.id("42")).click();
   }
 
   public void deleteUser1() {
@@ -74,14 +80,23 @@ public class ContactHelper extends HelperBase {
   }
 
   public void contactDeleting() {
-
-    initModification();
-    deleteUser();
+   deleteUser();
   }
 
   public void contactModification() {
-    initModification();
+
     fillUserField(new UserData("Test23", "Test212", "Test31", "0133"));
     submitCreating();
+  }
+
+  public List<UserData> getContactList() {
+    List<UserData> contacts = new ArrayList<UserData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      UserData entry = new UserData(name, null, null, null);
+      contacts.add(entry);
+    }
+    return contacts;
   }
 }
