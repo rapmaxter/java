@@ -56,36 +56,35 @@ public class GroupHelper extends HelperBase {
 
   }
 
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
     fillGroup(group);
     submitGroupCreation();
     returnGroupPage();
   }
 
-  public void modifyGroup(int index, GroupData group) {
+  public void modify(int index, GroupData group) {
     selectGroup(index);
     initGroupModification();
     fillGroup(group);
     submitGroupModification();
+  }
 
+  public void delete(int index) {
+    selectGroup(index);
+    groupeDelete();
+    returnGroupPage();
   }
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
-
-  public void groupeDeleting() {
-    groupeDelete();
-    returnGroupPage();
-  }
-
 
 
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
   List<GroupData> groups = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {

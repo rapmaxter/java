@@ -16,18 +16,18 @@ public class ContactModificationTests extends TestBase {
 
   public void testUserModification() {
 
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     if (!app.getContactHelper().isThereAUser()) {
       app.getContactHelper().createUser(new UserData("Test1", "Test2", "Test3", "01"));
     }
 
-      app.getNavigationHelper().gotoHomePage();
+      app.goTo().gotoHomePage();
     List<UserData> before = app.getContactHelper().getContactList();
     app.getContactHelper().initModification(before.size() - 1);
     UserData user = new UserData(before.get(before.size() - 1).getId(), "Test23", "Test212", "Test31", "0133");
     app.getContactHelper().fillUserField(user);
     app.getContactHelper().submitCreating();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<UserData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
 

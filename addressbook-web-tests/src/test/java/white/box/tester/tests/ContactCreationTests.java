@@ -13,11 +13,11 @@ public class ContactCreationTests extends TestBase {
   @Test (enabled = false)
   public void user() {
 
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<UserData> before = app.getContactHelper().getContactList();
     UserData user = new UserData("Test23", "Test212", "Test31", "0133");
     app.getContactHelper().createUser(user);
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<UserData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);
 

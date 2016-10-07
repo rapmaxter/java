@@ -5,7 +5,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
 
-import javax.print.attribute.HashAttributeSet;
 import java.util.HashSet;
 import java.util.List;
 
@@ -16,27 +15,25 @@ public class GroupModificationTests extends TestBase   {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.getNavigationHelper().gotoGroupPage();
-    if (! app.getGroupHelper().isThereAGroup()){
-      app.getGroupHelper().createGroup(new GroupData("Test2", null, "Test5"));}
+    app.goTo().GroupPage();
+    if (app.group().list().size() == 0){
+      app.group().create(new GroupData("Test2", null, "Test5"));}
   }
 
   @Test
   public void testGroupModification () {
 
 
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    List<GroupData> before = app.group().list();
    int index = before.size() - 1;
     GroupData group = new GroupData(before.get(index).getId(), "Test1", null, "Test5");
-    app.getGroupHelper().modifyGroup(index, group);
-    app.getNavigationHelper().gotoGroupPage();
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    app.group().modify(index, group);
+    app.goTo().GroupPage();
+    List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(index);
     before.add(group);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
-
-
 }
