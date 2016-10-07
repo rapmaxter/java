@@ -1,6 +1,7 @@
 package white.box.tester.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
 
@@ -13,24 +14,29 @@ import java.util.List;
  */
 public class GroupModificationTests extends TestBase   {
 
+  @BeforeMethod
+  public void ensurePreconditions() {
+    app.getNavigationHelper().gotoGroupPage();
+    if (! app.getGroupHelper().isThereAGroup()){
+      app.getGroupHelper().createGroup(new GroupData("Test2", null, "Test5"));}
+  }
+
   @Test
   public void testGroupModification () {
 
-    app.getNavigationHelper().gotoGroupPage();
-
-    if (! app.getGroupHelper().isThereAGroup()){
-      app.getGroupHelper().createGroup(new GroupData("Test2", null, "Test5"));}
 
     List<GroupData> before = app.getGroupHelper().getGroupList();
-    GroupData group = new GroupData(before.get(before.size() -1).getId(), "Test1", null, "Test5");
-    app.getGroupHelper().selectGroup(before.size() - 1);  // Choice group: 0- first,...
-    app.getGroupHelper().groupModofikation();
+   int index = before.size() - 1;
+    GroupData group = new GroupData(before.get(index).getId(), "Test1", null, "Test5");
+    app.getGroupHelper().modifyGroup(index, group);
     app.getNavigationHelper().gotoGroupPage();
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(before.size() - 1);
+    before.remove(index);
     before.add(group);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
+
+
 }

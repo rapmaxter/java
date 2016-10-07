@@ -1,6 +1,7 @@
 package white.box.tester.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
 
@@ -11,14 +12,17 @@ import java.util.List;
  */
 public class GroupDeletingTests extends TestBase {
 
+  @BeforeMethod
+  public void ensurePreconditions() {
+    app.getNavigationHelper().gotoGroupPage();
+    if (! app.getGroupHelper().isThereAGroup()){
+      app.getGroupHelper().createGroup(new GroupData("Test2", null, "Test5"));}
+  }
+
   @Test
   public void testsGroups() {
 
     app.getNavigationHelper().gotoGroupPage();
-    // Assert
-    if (! app.getGroupHelper().isThereAGroup()){
-      app.getGroupHelper().createGroup(new GroupData("Test3", null, "Test3"));
-    }
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().groupeDeleting();

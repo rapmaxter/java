@@ -63,6 +63,13 @@ public class GroupHelper extends HelperBase {
     returnGroupPage();
   }
 
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroup(group);
+    submitGroupModification();
+
+  }
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -72,13 +79,7 @@ public class GroupHelper extends HelperBase {
     returnGroupPage();
   }
 
-  public void groupModofikation() {
 
-
-    initGroupModification();
-    fillGroup(new GroupData("Test1", "header3", "Test53"));
-    submitGroupModification();
-  }
 
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
