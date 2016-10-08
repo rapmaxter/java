@@ -63,7 +63,6 @@ public class UserData {
 
     UserData userData = (UserData) o;
 
-    if (id != userData.id) return false;
     if (firstname != null ? !firstname.equals(userData.firstname) : userData.firstname != null) return false;
     return lastname != null ? lastname.equals(userData.lastname) : userData.lastname == null;
 

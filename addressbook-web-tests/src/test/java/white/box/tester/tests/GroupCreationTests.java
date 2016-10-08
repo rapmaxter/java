@@ -1,6 +1,7 @@
 package white.box.tester.tests;
 
 
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
@@ -23,5 +24,6 @@ public class GroupCreationTests extends TestBase {
     group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()); // преобразовали в поток индентификаторов
     before.add(group);
     Assert.assertEquals(before, after);
+    //MatcherAssert.assertThat(after, equalTo  );
   }
 }

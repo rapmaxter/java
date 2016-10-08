@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Max on 9/18/2016.
  */
-public class ApplicationManage {
+public class ApplicationManager {
 
   WebDriver wd;
 
@@ -24,7 +24,7 @@ public class ApplicationManage {
   private GroupHelper groupHelper;
   private String browser;
 
-  public ApplicationManage(String browser) {
+  public ApplicationManager(String browser) {
     this.browser = browser;
   }
 

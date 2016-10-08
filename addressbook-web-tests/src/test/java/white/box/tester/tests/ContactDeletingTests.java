@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ContactDeletingTests extends TestBase {
 
-  @Test (enabled = false)
+  @Test
   public void testDeleteUser() {
 
     app.goTo().gotoHomePage();
@@ -22,14 +22,14 @@ public class ContactDeletingTests extends TestBase {
 
     app.goTo().gotoHomePage();
     List<UserData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().initModification(before.size() - 1);
-    app.getContactHelper().contactDeleting();
+
+    app.getContactHelper().deleteFirstContact();
     app.goTo().gotoHomePage();
     List<UserData> after = app.getContactHelper().getContactList(); // Equals Lists before and after deleting
     Assert.assertEquals(after.size(), before.size() - 1);
 
-
-    before.remove(before.size() - 1);
-          Assert.assertEquals(before, after);
-    }
+    //before.remove(before.size() - 1);
+    before.remove(0);
+    Assert.assertEquals(before, after);
   }
+}

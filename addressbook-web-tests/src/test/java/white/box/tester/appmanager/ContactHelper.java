@@ -16,17 +16,29 @@ public class ContactHelper extends HelperBase {
 
 
   public ContactHelper(WebDriver wd) {
-
-
     super(wd);
   }
 
-  public void submitCreating() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+  public void createUser(UserData user) {
+    newUser();
+    fillUserField(user);
+    submitCreating();
   }
 
-  public void click(By locator) {
-    wd.findElement(locator).click();
+  public void deleteFirstContact() {
+    initModification(0);
+    deleteUser();
+  }
+
+  // object action
+  // user create read update delete list CRUDL IE P
+  // book CRUDL
+  // film CRUDL
+
+  // ==========================================================================================
+
+  public void submitCreating() {
+    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
   public void fillUserField(UserData UserData) {
@@ -36,61 +48,45 @@ public class ContactHelper extends HelperBase {
     type(By.name("home"), UserData.getPhone());
   }
 
-  public void type(By locator, String text) {
-    click(locator);
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
-  }
-
   public void newUser() {
     click(By.linkText("add new"));
   }
 
   public void initModification(int index) {
-
     //wd.findElements(By.name("selected[]")).get(index).click();
-    wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
+    click(By.xpath("//*[@id='maintable']//tr[" + index + 2 + "]/td[8]/a"));
   }
 
   public void deleteUser() {
-    wd.findElement(By.xpath("//div[@id='content']/form[2]/input[2]")).click();
+    click(By.xpath("//div[@id='content']/form[2]/input[2]"));
   }
 
   public void initUser() {
-    if (!wd.findElement(By.id("42")).isSelected())
-      wd.findElement(By.id("42")).click();
+    By id = By.id("42");
+    if (!isElementSelected(id))
+      click(id);
   }
 
   public void deleteUser1() {
     wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
   }
 
-  public void approveAllarm() {
-    wd.switchTo().alert().accept();
-  }
-
-  public void createUser(UserData user) {
-    newUser();
-    fillUserField(user);
-    submitCreating();
-  }
-
   public boolean isThereAUser() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void contactDeleting() {
-   deleteUser();
-  }
-
   public List<UserData> getContactList() {
     List<UserData> contacts = new ArrayList<UserData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
-    for (WebElement element : elements) {
-      String name = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      UserData entry = new UserData(id, name, name, null, null);
-      contacts.add(entry);
+
+    List<WebElement> rows = findElements(By.cssSelector("tr[name=entry]"));
+
+    for (WebElement row : rows) {
+      int id = Integer.parseInt(row.findElement(By.cssSelector("td:first-of-type input")).getAttribute("id"));
+
+      String firstname = row.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
+      String lastname = row.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
+// phone adress email
+      contacts.add(new UserData(id, firstname, lastname, null, null));
     }
     return contacts;
   }

@@ -10,8 +10,8 @@ import java.util.List;
 public class ContactCreationTests extends TestBase {
 
 
-  @Test (enabled = false)
-  public void user() {
+  @Test
+  public void Should_create_user() {
 
     app.goTo().gotoHomePage();
     List<UserData> before = app.getContactHelper().getContactList();
