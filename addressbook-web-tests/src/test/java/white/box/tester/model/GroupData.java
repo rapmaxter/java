@@ -55,6 +55,7 @@ public class GroupData {
     return name != null ? name.equals(groupData.name) : groupData.name == null;
 
   }
+
   @Override
   public int hashCode() {
     int result = id;
@@ -70,7 +71,5 @@ public class GroupData {
             '}';
   }
 
-  public void setId(int id) {
-    this.id = id;
   }
-}
+

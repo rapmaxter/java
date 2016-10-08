@@ -5,8 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 
 
 public class GroupCreationTests extends TestBase {
@@ -15,22 +14,14 @@ public class GroupCreationTests extends TestBase {
   public void testsGroups() {
 
     app.goTo().GroupPage();
-    List<GroupData> before = app.group().list();
+    Set<GroupData> before = app.group().all();
     GroupData group = new GroupData().withName("Test1");
     app.group().create(group);
-    List<GroupData> after = app.group().list();
+    Set<GroupData> after = app.group().all();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-
-    int max = 0;
-    for (GroupData g : after){
-      if (g.getId() > max ) {
-        max = g.getId();
-      }
-    }
-    group.setId(max);
+    group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()); // преобразовали в поток индентификаторов
     before.add(group);
-    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+    Assert.assertEquals(before, after);
   }
-
 }
