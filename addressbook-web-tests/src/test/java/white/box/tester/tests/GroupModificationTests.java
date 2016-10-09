@@ -1,13 +1,20 @@
 package white.box.tester.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
+import white.box.tester.model.Groups;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Max on 9/19/2016.
@@ -25,18 +32,19 @@ public class GroupModificationTests extends TestBase   {
   public void testGroupModification () {
 
 
-    Set<GroupData> before = app.group().all();
+    Groups before = app.group().all();
     GroupData modifiedGroup = before.iterator().next();
    int index = before.size() - 1;
     GroupData group = new GroupData().
             withId(modifiedGroup.getId()).withName("Test1").withHeader("Test123").withFooter("Test5");
     app.group().modify(group);
     app.goTo().GroupPage();
-    Set<GroupData> after = app.group().all();
-    Assert.assertEquals(after.size(), before.size());
+    Groups after = app.group().all();
+    assertEquals(after.size(), before.size());
 
     before.remove(modifiedGroup);
     before.add(group);
-    Assert.assertEquals(before,after);
+    assertEquals(before,after);
+    assertThat(after, equalTo(before.withOut(modifiedGroup).withAdded(group)));
   }
 }

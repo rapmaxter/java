@@ -1,12 +1,16 @@
 package white.box.tester.tests;
 
 
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
+
 import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
+import white.box.tester.model.Groups;
 
-import java.util.Set;
+
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 
 public class GroupCreationTests extends TestBase {
@@ -15,15 +19,13 @@ public class GroupCreationTests extends TestBase {
   public void testsGroups() {
 
     app.goTo().GroupPage();
-    Set<GroupData> before = app.group().all();
+    Groups before = app.group().all();
     GroupData group = new GroupData().withName("Test1");
     app.group().create(group);
-    Set<GroupData> after = app.group().all();
-    Assert.assertEquals(after.size(), before.size() + 1);
+    Groups after = app.group().all();
+    assertEquals(after.size(), equalTo(before.size() + 1));
 
-    group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()); // преобразовали в поток индентификаторов
-    before.add(group);
-    Assert.assertEquals(before, after);
-    //MatcherAssert.assertThat(after, equalTo  );
+        assertThat(after, equalTo(
+            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 }
