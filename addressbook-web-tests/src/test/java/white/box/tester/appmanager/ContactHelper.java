@@ -49,6 +49,7 @@ public class ContactHelper extends HelperBase {
 
   public void initModification(int index) {
     //wd.findElements(By.name("selected[]")).get(index).click();
+    click(By.xpath("//*[@id='maintable']//tr[" + (index + 2) + "]/td[8]/a"));
   }
 
   public void deleteUser() {
