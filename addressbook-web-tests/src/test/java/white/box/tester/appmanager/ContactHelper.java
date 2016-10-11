@@ -3,7 +3,6 @@ package white.box.tester.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import white.box.tester.model.UserData;
 
 import java.util.ArrayList;
@@ -30,10 +29,6 @@ public class ContactHelper extends HelperBase {
     deleteUser();
   }
 
-  // object action
-  // user create read update delete list CRUDL IE P
-  // book CRUDL
-  // film CRUDL
 
   // ==========================================================================================
 
@@ -54,7 +49,6 @@ public class ContactHelper extends HelperBase {
 
   public void initModification(int index) {
     //wd.findElements(By.name("selected[]")).get(index).click();
-    click(By.xpath("//*[@id='maintable']//tr[" + index + 2 + "]/td[8]/a"));
   }
 
   public void deleteUser() {
