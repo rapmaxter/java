@@ -74,8 +74,11 @@ public class UserData {
 
     UserData userData = (UserData) o;
 
+    if (id != userData.id) return false;
     if (firstname != null ? !firstname.equals(userData.firstname) : userData.firstname != null) return false;
-    return lastname != null ? lastname.equals(userData.lastname) : userData.lastname == null;
+    if (lastname != null ? !lastname.equals(userData.lastname) : userData.lastname != null) return false;
+    if (address != null ? !address.equals(userData.address) : userData.address != null) return false;
+    return phone != null ? phone.equals(userData.phone) : userData.phone == null;
 
   }
 
@@ -84,7 +87,8 @@ public class UserData {
     int result = id;
     result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (phone != null ? phone.hashCode() : 0);
     return result;
   }
-
 }

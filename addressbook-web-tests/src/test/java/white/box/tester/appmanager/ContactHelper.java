@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import white.box.tester.model.UserData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Max on 9/18/2016.
@@ -28,12 +30,25 @@ public class ContactHelper extends HelperBase {
     initModification(0);
     deleteUser();
   }
+  public void deleteUser() {
+    click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+  }
 
+  public void delete(UserData contact) {
+    initModificationById(contact.getId());
+    deleteUser();
+  }
+  public void modify(UserData user) {
+    initModificationById(user.getId());
+    fillUserField(user);
+    submitCreating();
+  }
 
   // ==========================================================================================
 
   public void submitCreating() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+    wd.findElement(By.name("update")).click();
+   // click(By.xpath("//div[@id='content']/form/input[70]"));
   }
 
   public void fillUserField(UserData UserData) {
@@ -47,14 +62,17 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void initModification(int index) {
+   public void initModification(int index) {
+     wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
     //wd.findElements(By.name("selected[]")).get(index).click();
-    click(By.xpath("//*[@id='maintable']//tr[" + (index + 2) + "]/td[8]/a"));
+    //click(By.xpath("//*[@id='maintable']//tr[" + (index + 2) + "]/td[8]/a"));
   }
 
-  public void deleteUser() {
-    click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+  public void initModificationById(int id) {
+    //wd.findElements(By.name("selected[]")).get(index).click();
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
+
 
   public void initUser() {
     By id = By.id("42");
@@ -70,8 +88,8 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<UserData> getContactList() {
-    List<UserData> contacts = new ArrayList<UserData>();
+  public Set<UserData> all() {
+    Set<UserData> contacts = new HashSet<>();
 
     List<WebElement> rows = findElements(By.cssSelector("tr[name=entry]"));
 
@@ -87,4 +105,6 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
+
 }
