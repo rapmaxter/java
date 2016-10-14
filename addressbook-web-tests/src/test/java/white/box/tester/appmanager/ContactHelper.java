@@ -31,6 +31,7 @@ public class ContactHelper extends HelperBase {
     deleteUser();
   }
   public void deleteUser() {
+    //wd.findElement(By.cssSelector("input[value=Delete]")).click();
     click(By.xpath("//div[@id='content']/form[2]/input[2]"));
   }
 
@@ -47,7 +48,8 @@ public class ContactHelper extends HelperBase {
   // ==========================================================================================
 
   public void submitCreating() {
-    wd.findElement(By.name("update")).click();
+
+    wd.findElement(By.cssSelector("input[value=Enter]")).click();
    // click(By.xpath("//div[@id='content']/form/input[70]"));
   }
 
@@ -63,9 +65,9 @@ public class ContactHelper extends HelperBase {
   }
 
    public void initModification(int index) {
-     wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
+    // wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
     //wd.findElements(By.name("selected[]")).get(index).click();
-    //click(By.xpath("//*[@id='maintable']//tr[" + (index + 2) + "]/td[8]/a"));
+    click(By.xpath("//*[@id='maintable']//tr[" + (index + 2) + "]/td[8]/a"));
   }
 
   public void initModificationById(int id) {
