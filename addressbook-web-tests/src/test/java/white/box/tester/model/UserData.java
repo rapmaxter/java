@@ -1,26 +1,39 @@
 package white.box.tester.model;
 
 public class UserData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String address;
-  private final String phone;
+  private int id = Integer.MAX_VALUE;
+  private  String firstname;
+  private  String lastname;
+  private  String address;
+  private  String phone;
 
-  public UserData(String firstname, String lastname, String address, String phone) {
-    this.id = 0;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.phone = phone;
-
-  }
-  public UserData(int id, String firstname, String lastname, String address, String phone) {
+ public void setId(int id) {
     this.id = id;
+ }
+
+  public UserData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public UserData withFirstname(String firstname) {
     this.firstname = firstname;
+    return this;
+  }
+
+  public UserData withLastname(String lastname) {
     this.lastname = lastname;
+    return this;
+  }
+
+  public UserData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public UserData withPhone(String phone) {
     this.phone = phone;
+    return this;
   }
 
   public String getFirstname() {
@@ -43,9 +56,7 @@ public class UserData {
     return id;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+
 
   @Override
   public String toString() {
@@ -75,4 +86,5 @@ public class UserData {
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
+
 }

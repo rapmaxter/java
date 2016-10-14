@@ -16,7 +16,8 @@ public class ContactDeletingTests extends TestBase {
 
     app.goTo().gotoHomePage();
     if (!app.getContactHelper().isThereAUser()) {
-      app.getContactHelper().createUser(new UserData("Test1", "Test2", "Test3", "01"));
+      app.getContactHelper().createUser(new UserData().withFirstname("Test23").withLastname("Test113").
+              withAddress("Test4443").withPhone("5343"));
 
     }
 

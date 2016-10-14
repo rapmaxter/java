@@ -37,7 +37,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillUserField(UserData UserData) {
-    type(By.name("firstname"), UserData.getFirstname());
+     type(By.name("firstname"), UserData.getFirstname());
     type(By.name("lastname"), UserData.getLastname());
     type(By.name("address"), UserData.getAddress());
     type(By.name("home"), UserData.getPhone());
@@ -80,8 +80,10 @@ public class ContactHelper extends HelperBase {
 
       String firstname = row.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
       String lastname = row.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
-// phone adress email
-      contacts.add(new UserData(id, firstname, lastname, null, null));
+      String address = row.findElement(By.cssSelector("td:nth-of-type(4)")).getText();
+      String phone = row.findElement(By.cssSelector("td:nth-of-type(6)")).getText();
+
+      contacts.add(new UserData().withId(id).withFirstname(firstname).withLastname(lastname).withAddress(address).withPhone(phone));
     }
     return contacts;
   }

@@ -18,13 +18,15 @@ public class ContactModificationTests extends TestBase {
 
     app.goTo().gotoHomePage();
     if (!app.getContactHelper().isThereAUser()) {
-      app.getContactHelper().createUser(new UserData("Test1", "Test2", "Test3", "01"));
+      app.getContactHelper().createUser(new UserData().withFirstname("Test23").withLastname("Test212").
+              withAddress("Test4443").withPhone("5343"));
     }
 
       app.goTo().gotoHomePage();
     List<UserData> before = app.getContactHelper().getContactList();
     app.getContactHelper().initModification(before.size() - 1);
-    UserData user = new UserData(before.get(before.size() - 1).getId(), "Test23", "Test212", "Test31", "0133");
+    UserData user = new UserData().withId(before.get(before.size() - 1).getId()).withFirstname("Test123").withLastname("Test1212").
+            withAddress("Test14443").withPhone("15343");
     app.getContactHelper().fillUserField(user);
     app.getContactHelper().submitCreating();
     app.goTo().gotoHomePage();
