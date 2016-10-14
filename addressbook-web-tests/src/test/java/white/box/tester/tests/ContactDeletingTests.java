@@ -25,10 +25,9 @@ public class ContactDeletingTests extends TestBase {
     app.goTo().gotoHomePage();
     Set<UserData> before = app.getContactHelper().all();
     UserData deleteContact = before.iterator().next();
-    app.getContactHelper().deleteFirstContact();
+    app.getContactHelper().deleteFirstContact(deleteContact);
     app.goTo().gotoHomePage();
-    app.getContactHelper().delete(deleteContact);
-        Set<UserData> after = app.getContactHelper().all(); // Equals Lists before and after deleting
+            Set<UserData> after = app.getContactHelper().all(); // Equals Lists before and after deleting
     Assert.assertEquals(after.size(), before.size() - 1);
 
 

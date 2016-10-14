@@ -26,16 +26,16 @@ public class ContactHelper extends HelperBase {
     submitCreating();
   }
 
-  public void deleteFirstContact() {
-    initModification(0);
-    deleteUser();
-  }
+//  public void deleteFirstContact() {
+//    initModification(0);
+ //   deleteUser();
+ // }
   public void deleteUser() {
     //wd.findElement(By.cssSelector("input[value=Delete]")).click();
     click(By.xpath("//div[@id='content']/form[2]/input[2]"));
   }
 
-  public void delete(UserData contact) {
+  public void deleteFirstContact(UserData contact) {
     initModificationById(contact.getId());
     deleteUser();
   }
