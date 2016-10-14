@@ -3,6 +3,7 @@ package white.box.tester.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import white.box.tester.model.Contacts;
 import white.box.tester.model.UserData;
 
 import java.util.ArrayList;
@@ -90,8 +91,8 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public Set<UserData> all() {
-    Set<UserData> contacts = new HashSet<>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
 
     List<WebElement> rows = findElements(By.cssSelector("tr[name=entry]"));
 
