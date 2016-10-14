@@ -1,12 +1,19 @@
 package white.box.tester.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import white.box.tester.model.Contacts;
 import white.box.tester.model.UserData;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Max on 9/19/2016.
@@ -24,7 +31,7 @@ public class ContactModificationTests extends TestBase {
     }
 
       app.goTo().gotoHomePage();
-    Set<UserData> before = app.getContactHelper().all();
+    Contacts before = app.getContactHelper().all();
     UserData modifiedContact = before.iterator().next();
         UserData user = new UserData().withId(modifiedContact.getId()).withFirstname("Test123").withLastname("Test1212").
             withAddress("Test14443").withPhone("15343");
@@ -32,12 +39,9 @@ public class ContactModificationTests extends TestBase {
     app.getContactHelper().modify(user);
 
     app.goTo().gotoHomePage();
-    Set<UserData> after = app.getContactHelper().all();
-    Assert.assertEquals(after.size(), before.size());
-
-    before.remove(modifiedContact);
-    before.add(user);
-    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+    Contacts after = app.getContactHelper().all();
+    assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(user)));
   }
 
 

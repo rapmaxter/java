@@ -1,11 +1,19 @@
 package white.box.tester.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import white.box.tester.model.Contacts;
+import white.box.tester.model.Groups;
 import white.box.tester.model.UserData;
 
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Max on 9/19/2016.
@@ -23,15 +31,13 @@ public class ContactDeletingTests extends TestBase {
     }
 
     app.goTo().gotoHomePage();
-    Set<UserData> before = app.getContactHelper().all();
+    Contacts before = app.getContactHelper().all();
     UserData deleteContact = before.iterator().next();
     app.getContactHelper().deleteFirstContact(deleteContact);
     app.goTo().gotoHomePage();
-            Set<UserData> after = app.getContactHelper().all(); // Equals Lists before and after deleting
-    Assert.assertEquals(after.size(), before.size() - 1);
+    Contacts after = app.getContactHelper().all();
+    assertEquals(after.size(), before.size() - 1);
+    assertThat(after, equalTo(before.withOut(deleteContact)));
 
-
-    before.remove(deleteContact);
-    Assert.assertEquals(before, after);
   }
 }
