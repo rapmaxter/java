@@ -28,10 +28,15 @@ public class ContactDeletingTests extends TestBase {
     ContactData deleteContact = before.iterator().next();
     app.getContactHelper().deleteFirstContact(deleteContact);
     app.goTo().gotoHomePage();
-    Contacts after = app.getContactHelper().all();
-    assertEquals(after.size(), before.size() - 1);
 
+    assertEquals(app.getContactHelper().count(), before.size() - 1);
+    Contacts after = app.getContactHelper().all();
     assertThat(after, equalTo(before.withOut(deleteContact)));
+
+
+    // assertEquals(after.size(), before.size() - 1);    моя первая проверка
+    //Contacts after = app.getContactHelper().all();
+  //  assertThat(after, equalTo(before.withOut(deleteContact)));
 
   }
 }

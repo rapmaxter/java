@@ -25,21 +25,15 @@ public class ContactHelper extends HelperBase {
   }
 
 
-
-  public void deleteUser() {
-    //wd.findElement(By.cssSelector("input[value=Delete]")).click();
-    click(By.xpath("//*[@id='content']/form[2]/div[2]/input"));
-    {
-
-    }
-  }
   public void deleteFirstContact(ContactData contact) {
-    initModificationById(contact.getId());
+    selectContactById(contact.getId());
     deleteUser();
     approveAllarm();
 
     }
   public void modify(ContactData contact) {
+
+    selectContactById(contact.getId());
     initModificationById(contact.getId());
     fillUserField(contact);
     submitCreating();
@@ -48,6 +42,7 @@ public class ContactHelper extends HelperBase {
   // ==========================================================================================
 
   public void submitCreating() {
+
 
     wd.findElement(By.cssSelector("input[value=Enter]")).click();
    // click(By.xpath("//div[@id='content']/form/input[70]"));
@@ -67,15 +62,31 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-   public void initModification(int index) {
+
+
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
+
+  public void deleteUser() {
+    //wd.findElement(By.cssSelector("input[value=Delete]")).click();
+    click(By.xpath("//*[@id='content']/form[2]/div[2]/input"));
+
+  }
+
+  public void initModification(int index) {
     // wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
     //wd.findElements(By.name("selected[]")).get(index).click();
     click(By.xpath("//*[@id='maintable']//tr[" + (index + 2) + "]/td[8]/a"));
   }
 
-  public void initModificationById(int id) {
-    //wd.findElements(By.name("selected[]")).get(index).click();
-    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+
+  private void initModificationById(int id) {
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']",id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click();
+
   }
 
 
@@ -142,7 +153,11 @@ public class ContactHelper extends HelperBase {
     }
 
 
+  public int count() {
+
+    return wd.findElements(By.name("selected[]")).size();
   }
+}
 
 
 

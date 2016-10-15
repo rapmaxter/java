@@ -13,9 +13,9 @@ import static org.testng.Assert.assertEquals;
  */
 public class ContactModificationTests extends TestBase {
 
-  @Test (enabled = false)
+  @Test
 
-  public void testUserModification() {
+  public void testContactModification() {
 
     app.goTo().gotoHomePage();
     if (!app.getContactHelper().isThereAUser()) {
