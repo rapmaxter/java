@@ -1,15 +1,8 @@
 package white.box.tester.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import white.box.tester.model.ContactData;
 import white.box.tester.model.Contacts;
-import white.box.tester.model.UserData;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,22 +19,22 @@ public class ContactModificationTests extends TestBase {
 
     app.goTo().gotoHomePage();
     if (!app.getContactHelper().isThereAUser()) {
-      app.getContactHelper().createUser(new UserData().withFirstname("Test23").withLastname("Test212").
-              withAddress("Test4443").withPhone("5343"));
+      app.getContactHelper().createUser(new ContactData().withFirstname("Test23").withLastname("Test212").
+              withAddress("Test4443").withHomephone("5343"));
     }
 
       app.goTo().gotoHomePage();
     Contacts before = app.getContactHelper().all();
-    UserData modifiedContact = before.iterator().next();
-        UserData user = new UserData().withId(modifiedContact.getId()).withFirstname("Test123").withLastname("Test1212").
-            withAddress("Test14443").withPhone("15343");
+    ContactData modifiedContact = before.iterator().next();
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Test123").withLastname("Test1212").
+            withAddress("Test14443").withHomephone("15343");
 
-    app.getContactHelper().modify(user);
+    app.getContactHelper().modify(contact);
 
     app.goTo().gotoHomePage();
     Contacts after = app.getContactHelper().all();
     assertEquals(after.size(), before.size());
-    assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(user)));
+    assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(contact)));
   }
 
 
