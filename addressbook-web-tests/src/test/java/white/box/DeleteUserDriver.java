@@ -12,8 +12,8 @@ public class DeleteUserDriver extends TestBase {
   public void testDeleteUser () {
 
     app.goTo().gotoHomePage();
-    app.getContactHelper().initUser();
+    //app.getContactHelper().initModificationById();
     app.getContactHelper().deleteUser1();
-   // app.getContactHelper().approveAllarm(); // команда подтверждения "ОК" высплывающего окна
+   //  app.getContactHelper().approveAllarm(); // команда подтверждения "ОК" высплывающего окна
   }
 }

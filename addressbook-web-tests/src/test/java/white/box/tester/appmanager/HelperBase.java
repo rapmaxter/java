@@ -54,9 +54,6 @@ public class HelperBase {
     }
   }
 
-  protected void approveAllarm() {
-    wd.switchTo().alert().accept();
-  }
 
   protected boolean isElementSelected(By id) {
     return findElement(id).isSelected();

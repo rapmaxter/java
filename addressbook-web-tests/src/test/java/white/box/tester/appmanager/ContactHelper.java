@@ -28,14 +28,18 @@ public class ContactHelper extends HelperBase {
   }
 
 
+
   public void deleteUser() {
     //wd.findElement(By.cssSelector("input[value=Delete]")).click();
     click(By.xpath("//div[@id='content']/form[2]/input[2]"));
-  }
+       {
 
+    }
+  }
   public void deleteFirstContact(UserData user) {
     initModificationById(user.getId());
     deleteUser();
+    approveAllarm();
   }
   public void modify(UserData user) {
     initModificationById(user.getId());
@@ -83,6 +87,10 @@ public class ContactHelper extends HelperBase {
   public void deleteUser1() {
     wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
   }
+  public void approveAllarm() {
+    wd.switchTo().alert().accept();
+  }
+
 
   public boolean isThereAUser() {
     return isElementPresent(By.name("selected[]"));
