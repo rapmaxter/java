@@ -19,15 +19,15 @@ public class ContactPhoneTests extends TestBase  {
 
 
   @Test
-  public void testContactPhones() {
+  public void testPhonesContacts() {
     app.goTo().gotoHomePage();
     ContactData contact = app.getContactHelper().all().iterator().next();
     ContactData contactInfoFormEditForm = app.getContactHelper().infoFormEditForm(contact);
 
+    assertThat(contact.getAddress(), equalTo(contactInfoFormEditForm.getAddress()));
     assertThat(contact.getAllphones(), equalTo(mergePhones(contactInfoFormEditForm)));
     assertThat(contact.getAllemails(), equalTo(mergeEmail(contactInfoFormEditForm)));
 
-    assertThat(contact.getAddress(), equalTo(contactInfoFormEditForm.getAddress()));
 
   }
 
@@ -39,14 +39,16 @@ public class ContactPhoneTests extends TestBase  {
 
 
   private String mergePhones(ContactData contact){
-    return Arrays.asList(contact.getHomephone(), contact.getMobile(), contact.getWorkPhone())
+    return Arrays.asList(contact.getHomephone(), contact.getMobile(), contact.getWorkphone())
             .stream().filter((s) -> ! s.equals(""))
             .map(ContactPhoneTests :: cleanedPhone)
             .collect(Collectors.joining("\n"));
   }
 
   public static String cleanedPhone (String phone) {
-    return phone.replaceAll("\\s", "").replaceAll("[-()]" , "");
+
+    return phone.replaceAll("\\s", "")
+            .replaceAll("[-()]" , "");
   }
 
 }
