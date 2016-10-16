@@ -36,13 +36,16 @@ public class ContactHelper extends HelperBase {
     selectContactById(contact.getId());
     initModificationById(contact.getId());
     fillUserField(contact);
-    submitCreating();
+    submitModify();
+  }
+
+  private void submitModify() {
+    wd.findElement(By.cssSelector("input[value=Update]")).click();
   }
 
   // ==========================================================================================
 
   public void submitCreating() {
-
 
     wd.findElement(By.cssSelector("input[value=Enter]")).click();
    // click(By.xpath("//div[@id='content']/form/input[70]"));
