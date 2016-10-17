@@ -1,5 +1,7 @@
 package white.box.tester.model;
 
+import java.io.File;
+
 /**
  * Created by Max on 10/15/2016.
  */
@@ -17,6 +19,19 @@ public class ContactData {
   private String workphone;
   private String allphones;
   private String allemails;
+  private File photo;
+
+
+  public File getPhoto() {
+    return photo;
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
+
+
 
   public String getFirstname() {
     return firstname;

@@ -52,13 +52,13 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillUserField(ContactData ContactData) {
-     type(By.name("firstname"), ContactData.getFirstname());
+    type(By.name("firstname"), ContactData.getFirstname());
     type(By.name("lastname"), ContactData.getLastname());
     type(By.name("address"), ContactData.getAddress());
     type(By.name("home"), ContactData.getHomephone());
     type(By.name("email"), ContactData.getEmail1());
     type(By.name("mobile"), ContactData.getMobile());
-
+    attach(By.name("photo"), ContactData.getPhoto());
   }
 
   public void newUser() {
@@ -123,14 +123,11 @@ public class ContactHelper extends HelperBase {
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
       String address = cells.get(3).getText();
-      String[] allemails = cells.get(4).getText().split("\n");
-      String[] allphones = cells.get(5).getText().split("\n");
+      String allemails = cells.get(4).getText();
+      String allphones = cells.get(5).getText();
       ContactData contact = new ContactData()
               .withId(id).withFirstname(firstname).withLastname(lastname)
-              .withAddress(address).withHomephone(allphones[0]).withMobile(allphones[1])
-              .withWorkphone(allphones[2]).withEmail1(allemails[0])
-              .withEmail2(allemails[1]).withEmail3(allemails[2]);
-
+              .withAddress(address).withAllphones(allphones).withAllemails(allemails);
 
       contactCache.add(contact);
     }

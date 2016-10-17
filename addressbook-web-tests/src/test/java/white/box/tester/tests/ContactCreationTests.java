@@ -6,6 +6,8 @@ import white.box.tester.model.ContactData;
 import white.box.tester.model.Contacts;
 
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -17,8 +19,9 @@ public class ContactCreationTests extends TestBase {
 
     app.goTo().gotoHomePage();
     Contacts before = app.getContactHelper().all();
-    ContactData contact = new ContactData().withFirstname("Test23").withLastname("Test113").
-            withAddress("Test4443").withHomephone("5343");
+    File photo = new File("src/test/resources/Featute.png");
+    ContactData contact = new ContactData().withFirstname("Test7423").withLastname("Test113").
+            withAddress("Test4443").withHomephone("5343").withPhoto(photo);
     app.getContactHelper().createUser(contact);
     app.goTo().gotoHomePage();
     Contacts after = app.getContactHelper().all();
