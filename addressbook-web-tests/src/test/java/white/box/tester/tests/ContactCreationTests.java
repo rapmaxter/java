@@ -19,7 +19,7 @@ public class ContactCreationTests extends TestBase {
 
     app.goTo().gotoHomePage();
     Contacts before = app.getContactHelper().all();
-    File photo = new File("src/test/resources/Featute.png");
+    File photo = new File("src/test/resources/Feature.png");
     ContactData contact = new ContactData().withFirstname("Test7423").withLastname("Test113").
             withAddress("Test4443").withHomephone("5343").withPhoto(photo);
     app.getContactHelper().createUser(contact);
