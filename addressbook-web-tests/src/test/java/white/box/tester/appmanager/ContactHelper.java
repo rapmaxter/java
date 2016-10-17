@@ -115,24 +115,28 @@ public class ContactHelper extends HelperBase {
   private Contacts contactCache = null;
 
   public Contacts all() {
-    Contacts contacts = new Contacts();
-
-    List<WebElement> rows = findElements(By.cssSelector("tr[name=entry]"));
-
+    contactCache = new Contacts();
+    List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
-      int id = Integer.parseInt(row.findElement(By.cssSelector("td:first-of-type input")).getAttribute("id"));
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+      String address = cells.get(3).getText();
+      String[] allemails = cells.get(4).getText().split("\n");
+      String[] allphones = cells.get(5).getText().split("\n");
+      ContactData contact = new ContactData()
+              .withId(id).withFirstname(firstname).withLastname(lastname)
+              .withAddress(address).withHomephone(allphones[0]).withMobile(allphones[1])
+              .withWorkphone(allphones[2]).withEmail1(allemails[0])
+              .withEmail2(allemails[1]).withEmail3(allemails[2]);
 
-      String firstname = row.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
-      String lastname = row.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
-      String address = row.findElement(By.cssSelector("td:nth-of-type(4)")).getText();
-      String allemails = row.findElement(By.cssSelector("td:nth-of-type(5)")).getText();
-      String allphones = row.findElement(By.cssSelector("td:nth-of-type(6)")).getText();
 
-      contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
-              .withAddress(address).withAllphones(allphones).withAllemails(allemails));
+      contactCache.add(contact);
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
+
 
 
   public ContactData infoFormEditForm(ContactData contact) {
