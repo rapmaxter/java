@@ -68,6 +68,8 @@ public class GroupData {
     return "GroupData{" +
             "id='" + id + '\'' +
             ", name='" + name + '\'' +
+            ", Header='" + header + '\'' +
+            ", Footer='" + footer + '\'' +
             '}';
   }
 

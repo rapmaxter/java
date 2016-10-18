@@ -1,5 +1,6 @@
 package white.box.tester.generators;
 
+import com.beust.jcommander.Parameter;
 import white.box.tester.model.GroupData;
 
 import java.io.File;
@@ -13,6 +14,12 @@ import java.util.List;
  * Created by Max on 10/17/2016.
  */
 public class GroupDataGenerator {
+
+  @Parameter(names = "-c" description = "Group count")
+  public int count;
+
+  @Parameter
+  public String file;
 
   public static void main(String[] args) throws IOException {
     int count = Integer.parseInt(args[0]);
