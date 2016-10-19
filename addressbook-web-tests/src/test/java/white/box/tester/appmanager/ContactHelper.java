@@ -114,6 +114,11 @@ public class ContactHelper extends HelperBase {
 
   private Contacts contactCache = null;
 
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
+
   public Contacts all() {
     contactCache = new Contacts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
@@ -163,10 +168,15 @@ public class ContactHelper extends HelperBase {
     }
 
 
-  public int count() {
+  private void initContactModificationById(int id) {
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']",id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click();
 
-    return wd.findElements(By.name("selected[]")).size();
+
   }
+
 }
 
 
