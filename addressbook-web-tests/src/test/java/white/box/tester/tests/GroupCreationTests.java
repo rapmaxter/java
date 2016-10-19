@@ -47,7 +47,7 @@ public class GroupCreationTests extends TestBase {
       group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     }
 
-    @Test
+    @Test (enabled = false)
   public void testsBadGroups() {
 
     app.goTo().GroupPage();

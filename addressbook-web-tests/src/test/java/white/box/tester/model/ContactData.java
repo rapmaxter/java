@@ -2,10 +2,14 @@ package white.box.tester.model;
 
 import java.io.File;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 /**
  * Created by Max on 10/15/2016.
  */
+@XStreamAlias("group")
 public class ContactData {
+  @XStreamOmitField
 
   private int id = Integer.MAX_VALUE;
   private String firstname;
