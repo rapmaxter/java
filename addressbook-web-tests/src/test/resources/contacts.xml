@@ -1,0 +1,20 @@
+<list>
+  <white.box.tester.model.ContactData>
+    <id>2147483647</id>
+    <firstname>test 0</firstname>
+    <lastname>header 0</lastname>
+    <address>footer 0</address>
+  </white.box.tester.model.ContactData>
+  <white.box.tester.model.ContactData>
+    <id>2147483647</id>
+    <firstname>test 1</firstname>
+    <lastname>header 1</lastname>
+    <address>footer 1</address>
+  </white.box.tester.model.ContactData>
+  <white.box.tester.model.ContactData>
+    <id>2147483647</id>
+    <firstname>test 2</firstname>
+    <lastname>header 2</lastname>
+    <address>footer 2</address>
+  </white.box.tester.model.ContactData>
+</list>
