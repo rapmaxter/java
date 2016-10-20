@@ -56,20 +56,20 @@ public class ContactDataGenerator {
     XStream xStream = new XStream();
     xStream.processAnnotations(ContactData.class);
     String xml = xStream.toXML(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
   }
 
   private void SaveAsCsv(List<ContactData> contacts, File file) throws IOException {
 
-    Writer writer = new FileWriter(file);
-    for (ContactData contact : contacts) {
-      writer.write(String.format("%s;%s;%s;\n", contact.getFirstname(), contact.getLastname(),
-              contact.getAddress()));
+    try (Writer writer = new FileWriter(file)) {
+      for (ContactData contact : contacts) {
+        writer.write(String.format("%s;%s;%s;\n", contact.getFirstname(), contact.getLastname(),
+                contact.getAddress()));
     }
-    writer.close();
-  }
+    }
+    }
 
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
