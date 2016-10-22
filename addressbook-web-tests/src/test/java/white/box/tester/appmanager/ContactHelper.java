@@ -112,14 +112,19 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  private Contacts contactCache = null;
+
+
 
   public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Contacts contactCache = null;
 
   public Contacts all() {
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
     contactCache = new Contacts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
@@ -138,8 +143,6 @@ public class ContactHelper extends HelperBase {
     }
     return new Contacts(contactCache);
   }
-
-
 
   public ContactData infoFormEditForm(ContactData contact) {
       initModificationById(contact.getId());
