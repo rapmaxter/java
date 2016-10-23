@@ -26,7 +26,7 @@ public class HbConnectionTest {
             .configure() // configures settings from hibernate.cfg.xml
             .build();
     try {
-      sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+      sessionFactory = new MetadataSources(registry  ).buildMetadata().buildSessionFactory();
     }
     catch (Exception e) {
       e.printStackTrace();
@@ -42,7 +42,7 @@ public class HbConnectionTest {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<GroupData> result = session.createQuery( "from GroupData" ).list();
-    for ( GroupData group : result ) {
+    for (GroupData group : result) {
       System.out.println(group);
     }
     session.getTransaction().commit();
