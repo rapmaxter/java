@@ -25,12 +25,12 @@ public class GroupData {
 
   @Expose
   @Column(name = "group_header")
-  @Type(type = "test")
+  @Type(type = "text")
   private  String header;
 
   @Expose
   @Column(name = "group_footer")
-  @Type(type = "test")
+  @Type(type = "text")
   private  String footer;
 
 

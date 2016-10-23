@@ -1,8 +1,7 @@
 package white.box.tester.tests;
 
-
-
 import com.thoughtworks.xstream.XStream;
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
@@ -12,13 +11,15 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
 public class GroupCreationTests extends TestBase {
+
+  org.jboss.logging.Logger logger = LoggerFactory.logger(GroupCreationTests.class);
 
  @DataProvider
  public Iterator<Object[]> validGroups() throws IOException {
@@ -37,9 +38,9 @@ public class GroupCreationTests extends TestBase {
    }
    }
 
-
   @Test (dataProvider = "validGroups")
   public void testsGroupCreation(GroupData group) {
+      logger.info("Start test testGroupCreation");
       app.goTo().GroupPage();
       Groups before = app.group().all();
       app.group().create(group);
@@ -47,7 +48,8 @@ public class GroupCreationTests extends TestBase {
       Groups after = app.group().all();
       assertThat(after, equalTo(before.withAdded(
       group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
-    }
+    logger.info("Stop test testGroupCreation");
+  }
 
     @Test (enabled = false)
   public void testsBadGroups() {
