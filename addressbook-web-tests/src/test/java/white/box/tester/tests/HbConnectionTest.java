@@ -11,6 +11,7 @@ import white.box.tester.model.GroupData;
 
 import java.util.List;
 
+
 /**
  * Created by Max on 10/22/2016.
  */
@@ -26,7 +27,7 @@ public class HbConnectionTest {
             .configure() // configures settings from hibernate.cfg.xml
             .build();
     try {
-      sessionFactory = new MetadataSources(registry  ).buildMetadata().buildSessionFactory();
+      sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     }
     catch (Exception e) {
       e.printStackTrace();

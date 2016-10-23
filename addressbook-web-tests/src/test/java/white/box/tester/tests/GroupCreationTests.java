@@ -1,17 +1,17 @@
 package white.box.tester.tests;
 
 import com.thoughtworks.xstream.XStream;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import white.box.tester.model.GroupData;
 import white.box.tester.model.Groups;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -19,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
 
-  org.jboss.logging.Logger logger = LoggerFactory.logger(GroupCreationTests.class);
+  org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(GroupCreationTests.class);
 
  @DataProvider
  public Iterator<Object[]> validGroups() throws IOException {
