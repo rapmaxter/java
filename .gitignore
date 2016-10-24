@@ -18,3 +18,4 @@ out/production/home_work/Main1.class
 out/production/home_work/Point.class
 home_work/src/Main1.java
 home_work/src/Point.java
+*.log

@@ -1,6 +1,6 @@
 package white.box.tester.tests;
 
-import org.apache.bcel.classfile.Method;
+
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import white.box.tester.appmanager.ApplicationManager;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
