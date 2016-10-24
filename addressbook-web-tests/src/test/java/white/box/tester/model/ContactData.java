@@ -4,34 +4,67 @@ import java.io.File;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+
 /**
  * Created by Max on 10/15/2016.
  */
-@XStreamAlias("group")
+@XStreamAlias("contact")
+@Entity
+@Table (name = "addressbook")
 public class ContactData {
   @XStreamOmitField
 
-  private int id = Integer.MAX_VALUE;
+  @Id
+  @Column(name="id")
+      private int id = Integer.MAX_VALUE;
+
+  @Column(name="firstname")
   private String firstname;
+
+  @Column(name="lastname")
   private String lastname;
+
+  @Column(name="address")
+  @Type(type = "text")
   private String address;
-  private String email1;
-  private String email2;
-  private String email3;
+
+  @Column(name="mobile")
+  @Type(type = "text")
   private String mobile;
+
+  @Column(name="home")
+  @Type(type = "text")
   private String homephone;
+
+  @Column(name="work")
+  @Type(type = "text")
   private String workphone;
+
+  @Column(name="photo")
+  @Type(type = "text")
+  private String photo;
+  @Transient
+  private String email1;
+  @Transient
+  private String email2;
+  @Transient
+  private String email3;
+  @Transient
   private String allphones;
+  @Transient
   private String allemails;
-  private File photo;
+
 
 
   public File getPhoto() {
-    return photo;
+    return new File(photo) ;
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 

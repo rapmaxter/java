@@ -35,7 +35,7 @@
     <!-- Names the annotated entity class -->
 
     <mapping class="white.box.tester.model.GroupData"/>
-
+    <mapping class="white.box.tester.model.ContactData"/>
 </session-factory>
 
         </hibernate-configuration>
