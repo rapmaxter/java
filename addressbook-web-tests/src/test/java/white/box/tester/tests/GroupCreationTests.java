@@ -19,7 +19,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
 
-  org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(GroupCreationTests.class);
 
  @DataProvider
  public Iterator<Object[]> validGroups() throws IOException {
@@ -40,16 +39,14 @@ public class GroupCreationTests extends TestBase {
 
   @Test (dataProvider = "validGroups")
   public void testsGroupCreation(GroupData group) {
-      logger.info("Start test testGroupCreation");
-      app.goTo().GroupPage();
+            app.goTo().GroupPage();
       Groups before = app.group().all();
       app.group().create(group);
       assertThat(app.group().count(), equalTo(before.size() + 1));
       Groups after = app.group().all();
       assertThat(after, equalTo(before.withAdded(
       group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
-    logger.info("Stop test testGroupCreation");
-  }
+      }
 
     @Test (enabled = false)
   public void testsBadGroups() {
