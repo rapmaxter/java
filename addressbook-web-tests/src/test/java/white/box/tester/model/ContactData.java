@@ -34,15 +34,15 @@ public class ContactData {
   @Column(name="mobile")
   @Type(type = "text")
   private String mobile;
-
+  @Transient
   @Column(name="home")
   @Type(type = "text")
   private String homephone;
-
+  @Transient
   @Column(name="work")
   @Type(type = "text")
   private String workphone;
-
+  @Transient
   @Column(name="photo")
   @Type(type = "text")
   private String photo;

@@ -45,9 +45,8 @@ public class ContactCreationTests extends TestBase {
   //  File photo = new File("src/test/resources/Feature.png");
     app.getContactHelper().createUser(contact);
     app.goTo().gotoHomePage();
+    assertThat(app.getContactHelper().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
-    assertThat(after.size(), equalTo(before.size() + 1));
-
     assertThat(after, equalTo(before.withAdded
             (contact.withId(after.stream().
                     mapToInt((u) -> u.getId()).max().getAsInt()))));

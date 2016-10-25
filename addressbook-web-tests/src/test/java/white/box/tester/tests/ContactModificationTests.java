@@ -17,14 +17,15 @@ public class ContactModificationTests extends TestBase {
 
   public void testContactModification() {
 
-    app.goTo().gotoHomePage();
-    if (!app.getContactHelper().isThereAUser()) {
-      app.getContactHelper().createUser(new ContactData().withFirstname("Test23").withLastname("Test212").
-              withAddress("Test4443").withHomephone("15343"));
+    if (app.db().contacts().size() == 0){
+      app.goTo().gotoHomePage();
+      app.getContactHelper().createUser(new ContactData().withFirstname("Test23").withLastname("Test113").
+              withAddress("Test4443").withHomephone("5343"));
+
     }
 
       app.goTo().gotoHomePage();
-    Contacts before = app.getContactHelper().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Test123").withLastname("Test1212").
             withAddress("Test14443").withHomephone("15343");
@@ -32,7 +33,7 @@ public class ContactModificationTests extends TestBase {
     app.getContactHelper().modify(contact);
 
     app.goTo().gotoHomePage();
-    Contacts after = app.getContactHelper().all();
+    Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(contact)));
   }

@@ -3,5 +3,7 @@
     <firstname>Name 0</firstname>
     <lastname>Lastname 0</lastname>
     <address>Address 0</address>
+    <mobile>Mobile 0</mobile>
+    <email1>Email1 0</email1>
   </contact>
 </list>
