@@ -20,19 +20,21 @@ public class ContactModificationTests extends TestBase {
     if (app.db().contacts().size() == 0){
       app.goTo().gotoHomePage();
       app.getContactHelper().createUser(new ContactData().withFirstname("Test23").withLastname("Test113").
-              withAddress("Test4443").withHomephone("5343"));
+              withAddress("Test4443"));
 
     }
 
       app.goTo().gotoHomePage();
     Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
-    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Test123").withLastname("Test1212").
-            withAddress("Test14443").withHomephone("15343");
+    ContactData contact = new ContactData().withId(modifiedContact.getId())
+            .withFirstname("Test123")
+            .withLastname("Test1212")
+            .withAddress("Test14443").withMobile("234235").withEmail1("test123");
 
     app.getContactHelper().modify(contact);
-
     app.goTo().gotoHomePage();
+    assertEquals(app.getContactHelper().count(), before.size());
     Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(contact)));
