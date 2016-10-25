@@ -41,11 +41,11 @@ public class ContactCreationTests extends TestBase {
   public void testsContactCreation(ContactData contact) {
 
     app.goTo().gotoHomePage();
-    Contacts before = app.getContactHelper().all();
+    Contacts before = app.db().contacts();
     File photo = new File("src/test/resources/Feature.png");
     app.getContactHelper().createUser(contact);
     app.goTo().gotoHomePage();
-    Contacts after = app.getContactHelper().all();
+    Contacts after = app.db().contacts();
     assertThat(after.size(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo(before.withAdded
