@@ -42,7 +42,7 @@ public class ContactCreationTests extends TestBase {
 
     app.goTo().gotoHomePage();
     Contacts before = app.db().contacts();
-    File photo = new File("src/test/resources/Feature.png");
+  //  File photo = new File("src/test/resources/Feature.png");
     app.getContactHelper().createUser(contact);
     app.goTo().gotoHomePage();
     Contacts after = app.db().contacts();
