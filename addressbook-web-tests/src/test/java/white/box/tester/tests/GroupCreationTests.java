@@ -46,20 +46,6 @@ public class GroupCreationTests extends TestBase {
       Groups after = app.db().groups();
       assertThat(after, equalTo(before.withAdded(
       group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    verifyGroupListInUI(); // убираем -DverifyUI=true в конфигарации "Edit" теста, после чего сравниваются лишь данные в БД. Иначе сравн. данные множества БД с польз. интерф. (UI)
       }
-
-    @Test (enabled = false)
-  public void testsBadGroups() {
-
-    app.goTo().GroupPage();
-    Groups before = app.group().all();
-    GroupData group = new GroupData().withName("Test1");
-    app.group().create(group);
-    Groups after = app.group().all();
-    assertThat(after.size(), equalTo(before.size() + 1));
-
-    assertThat(after, equalTo(
-            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
-      verifyGroupListInUI(); // убираем -DverifyUI=true в конфигарации "Edit" теста, после чего сравниваются лишь данные в БД. Иначе сравн. данные множества БД с польз. интерф. (UI)
-    }
-}
+ }

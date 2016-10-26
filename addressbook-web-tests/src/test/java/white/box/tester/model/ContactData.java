@@ -1,9 +1,12 @@
 package white.box.tester.model;
 
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -57,15 +60,24 @@ public class ContactData {
   @Transient
   private String allemails;
 
+  @ManyToMany
+  @JoinTable (name = "address_in_groups", joinColumns = @JoinColumn
+          (name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
 
+  private Set<GroupData> groups = new HashSet<>();
 
   public File getPhoto() {
     return new File(photo) ;
   }
 
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
     return this;
+
   }
 
 
