@@ -60,5 +60,6 @@ public class GroupCreationTests extends TestBase {
 
     assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
-  }
+      verifyGroupListInUI(); // убираем -DverifyUI=true в конфигарации "Edit" теста, после чего сравниваются лишь данные в БД. Иначе сравн. данные множества БД с польз. интерф. (UI)
+    }
 }
