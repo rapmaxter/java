@@ -23,9 +23,12 @@ public class GroupDeletingTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().GroupPage();
+    Groups before = app.db().groups();
     if (app.db().groups().size() == 0){
       app.goTo().GroupPage();
       app.group().create(new GroupData().withName("test1"));
+      Groups after = app.db().groups();
+      assertThat(after, equalTo(before.size() + 1));
     }
   }
 

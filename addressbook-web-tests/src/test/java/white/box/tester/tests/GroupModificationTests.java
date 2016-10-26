@@ -25,9 +25,12 @@ public class GroupModificationTests extends TestBase   {
   public void ensurePreconditions() {
 
     app.goTo().GroupPage();
+    Groups before = app.db().groups();
     if (app.db().groups().size() == 0){
       app.goTo().GroupPage();
       app.group().create(new GroupData().withName("test1"));
+      Groups after = app.db().groups();
+      assertThat(after, equalTo(before.size() + 1));
     }
   }
 
@@ -44,6 +47,7 @@ public class GroupModificationTests extends TestBase   {
     assertThat(app.group().count(), equalTo(before.size()));
     Groups after = app.db().groups();
     assertThat(after, equalTo(before.withOut(modifiedGroup).withAdded(group)));
+      verifyGroupListInUI(); // убираем -DverifyUI=true в конфигарации "Edit" теста
   }
 
 
