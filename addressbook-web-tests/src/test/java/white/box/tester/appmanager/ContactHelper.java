@@ -3,10 +3,12 @@ package white.box.tester.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import white.box.tester.model.ContactData;
 import white.box.tester.model.Contacts;
 
 import java.util.List;
+
 
 /**
  * Created by Max on 9/18/2016.
@@ -39,11 +41,26 @@ public class ContactHelper extends HelperBase {
     submitModify();
   }
 
-  private void submitModify() {
-    wd.findElement(By.cssSelector("input[value=Update]")).click();
+  public void addContact(ContactData contact) {
+    selectContactById(contact.getId());
+    selectGroup(contact);
+    approveContactInGroupe();
+  }
+
+  private void approveContactInGroupe() {
+    click(By.name("add"));
+  }
+
+  private void selectGroup(ContactData contact) {
+    new Select(wd.findElement(By.name("to_group")))
+                        .selectByVisibleText(contact.getGroups().iterator().next().getName());
   }
 
   // ==========================================================================================
+
+  private void submitModify() {
+    wd.findElement(By.cssSelector("input[value=Update]")).click();
+  }
 
   public void submitCreating() {
 
@@ -92,6 +109,11 @@ public class ContactHelper extends HelperBase {
 
   }
 
+  private void openContactDetailsById(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+
+  }
+
 
   public void initUser() {
     By id = By.id("42");
@@ -129,7 +151,7 @@ public class ContactHelper extends HelperBase {
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
       List<WebElement> cells = row.findElements(By.tagName("td"));
-      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
       String address = cells.get(3).getText();
@@ -148,11 +170,11 @@ public class ContactHelper extends HelperBase {
       initModificationById(contact.getId());
       String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
       String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
-      String homephone = wd.findElement(By.name("homephone")).getAttribute("value");
+      String homephone = wd.findElement(By.name("home")).getAttribute("value");
       String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
-      String workphone = wd.findElement(By.name("workphone")).getAttribute("value");
+      String workphone = wd.findElement(By.name("work")).getAttribute("value");
       String address = wd.findElement(By.name("address")).getAttribute("value");
-      String email1 = wd.findElement(By.name("email1")).getAttribute("value");
+      String email1 = wd.findElement(By.name("email")).getAttribute("value");
       String email2 = wd.findElement(By.name("email2")).getAttribute("value");
       String email3 = wd.findElement(By.name("email3")).getAttribute("value");
       wd.navigate().back();
@@ -171,16 +193,14 @@ public class ContactHelper extends HelperBase {
     }
 
 
-  private void initContactModificationById(int id) {
-    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']",id)));
-    WebElement row = checkbox.findElement(By.xpath("./../.."));
-    List<WebElement> cells = row.findElements(By.tagName("td"));
-    cells.get(7).findElement(By.tagName("a")).click();
-
-
+  public ContactData infoFromDetailsPage(ContactData contact) {
+    openContactDetailsById(contact.getId());
+    String contactDetails = wd.findElement(By.id("content")).getText();
+    wd.navigate().back();
+    return new ContactData().withDetails(contactDetails);
   }
 
-}
 
+}
 
 

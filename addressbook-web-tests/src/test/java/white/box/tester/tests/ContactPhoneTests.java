@@ -8,6 +8,7 @@ import white.box.tester.model.ContactData;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
@@ -24,23 +25,13 @@ public class ContactPhoneTests extends TestBase  {
     ContactData contact = app.getContactHelper().all().iterator().next();
     ContactData contactInfoFormEditForm = app.getContactHelper().infoFormEditForm(contact);
 
-    assertThat(contact.getAddress(), equalTo(contactInfoFormEditForm.getAddress()));
     assertThat(contact.getAllphones(), equalTo(mergePhones(contactInfoFormEditForm)));
-    assertThat(contact.getAllemails(), equalTo(mergeEmail(contactInfoFormEditForm)));
-
 
   }
-
-  private String mergeEmail(ContactData contact) {
-    return Arrays.asList(contact.getEmail1(), contact.getEmail2(), contact.getEmail3())
-            .stream().filter((s) -> ! s.equals(""))
-            .collect(Collectors.joining("\n"));
-  }
-
 
   private String mergePhones(ContactData contact){
-    return Arrays.asList(contact.getHomephone(), contact.getMobile(), contact.getWorkphone())
-            .stream().filter((s) -> ! s.equals(""))
+    return Stream.of(contact.getHomephone(), contact.getMobile(), contact.getWorkphone())
+            .filter((s) -> ! s.equals(""))
             .map(ContactPhoneTests :: cleanedPhone)
             .collect(Collectors.joining("\n"));
   }

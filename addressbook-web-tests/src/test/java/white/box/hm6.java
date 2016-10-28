@@ -31,11 +31,13 @@ public class hm6 {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-        wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).click();
-        wd.findElement(By.name("firstname")).click();
-        wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys("Test12312");
-        wd.findElement(By.name("update")).click();
+        if (!wd.findElement(By.id("128")).isSelected()) {
+            wd.findElement(By.id("128")).click();
+        }
+        if (!wd.findElement(By.xpath("//div[@class='right']/select//option[17]")).isSelected()) {
+            wd.findElement(By.xpath("//div[@class='right']/select//option[17]")).click();
+        }
+        wd.findElement(By.name("add")).click();
     }
     
     @AfterMethod

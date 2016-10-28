@@ -72,13 +72,19 @@ public class GroupData {
     return this;
   }
 
+
   public GroupData withId(int id) {
     this.id = id;
     return this;
+
+  }
+
+  public Set<ContactData> getContacts() {
+    return new Contacts(contacts);
   }
 
   @ManyToMany (mappedBy = "groups")
-  private Set<ContactData> groups = new HashSet<>();
+  private Set<ContactData> contacts = new HashSet<>();
 
   public int getId() {
     return id;
