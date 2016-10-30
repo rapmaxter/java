@@ -15,39 +15,42 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ContactAddInGroupTest extends TestBase {
 
-
+  private ContactData _contact;
+  private GroupData _group;
 
   @BeforeMethod
-  public void ensurePreconditionsGroups() {
-    app.goTo().GroupPage();
-    Groups before = app.db().groups();
-    if (app.db().groups().size() == 0){
-      app.goTo().GroupPage();
-      app.group().create(new GroupData().withName("test1"));
-      Groups after = app.db().groups();
-      assertThat(after, equalTo(before.size() + 1));
-      verifyGroupListInUI();
-    }
+  public void prepareGroup() {
+     Groups groups = app.db().groups();
+     if (groups.size() == 0){
+         app.goTo().GroupPage();
+      GroupData group = new GroupData().withName("test1");
+       app.group().create(group);
+       _group = group;
+       }
+    else _group = groups.iterator().next();
   }
-
 
   @BeforeMethod
   public void ensurePreconditionsContacts() {
-
-    if (app.db().contacts().size() == 0){
       app.goTo().gotoHomePage();
-      app.getContactHelper().createUser(new ContactData().withFirstname("Test23").withLastname("Test113").
-              withAddress("Test4443").withHomephone("5343"));
-    }
+      ContactData contact = new ContactData().withFirstname("Test23").withLastname("Test113").
+              withAddress("Test4443").withHomephone("5343");
+           app.getContactHelper().createUser(contact);
+      _contact = contact;
   }
 
     @Test
-    public void testContactInGroup (ContactData contact){
-           app.goTo().gotoHomePage();
-          app.getContactHelper().addContact(contact);
-
+    public void testContactInGroup(){
+         Contacts before = app.db().contacts();
+          app.getContactHelper().addContactInGroup(_contact, _group);
+      assertThat(app.getContactHelper().count(), equalTo(before.size() + 1));
+      Contacts after = app.db().contacts();
+      assertThat(after, equalTo(before.withAdded
+              (_contact.withId(after.stream().
+                      mapToInt((u) -> u.getId()).max().getAsInt()))));
     }
-}
+    }
+
 
 
 

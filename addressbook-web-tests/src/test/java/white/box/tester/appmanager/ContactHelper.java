@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import white.box.tester.model.ContactData;
 import white.box.tester.model.Contacts;
+import white.box.tester.model.GroupData;
+import white.box.tester.tests.TestBase;
 
 import java.util.List;
 
@@ -41,22 +43,31 @@ public class ContactHelper extends HelperBase {
     submitModify();
   }
 
-  public void addContact(ContactData contact) {
-    selectContactById(contact.getId());
-    selectGroup(contact);
+  public void addContactInGroup(ContactData contact, GroupData group) {
+
+    TestBase.app.goTo().gotoHomePage();
+    selectContactByName(contact);
+    selectGroup(group);
     approveContactInGroupe();
   }
 
-  private void approveContactInGroupe() {
-    click(By.name("add"));
-  }
 
-  private void selectGroup(ContactData contact) {
-    new Select(wd.findElement(By.name("to_group")))
-                        .selectByVisibleText(contact.getGroups().iterator().next().getName());
-  }
 
   // ==========================================================================================
+
+  private void selectContactByName(ContactData contact) {
+    click(By.xpath("//td[contains(text(), '" + contact.getLastname() + "')]/ancestor::tr//input"));
+  }
+
+  private void approveContactInGroupe() {
+        click(By.name("add"));
+  }
+
+  private void selectGroup(GroupData group) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+  }
+
+
 
   private void submitModify() {
     wd.findElement(By.cssSelector("input[value=Update]")).click();
