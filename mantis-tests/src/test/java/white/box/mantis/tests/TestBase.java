@@ -5,7 +5,6 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import white.box.mantis.appmanager.ApplicationManager;
-import white.box.tester.appmanager.ApplicationManager;
 
 /**
  * Created by Max on 9/18/2016.
