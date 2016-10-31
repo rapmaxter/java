@@ -1,5 +1,6 @@
 package white.box.tester.tests;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import white.box.tester.model.ContactData;
@@ -9,6 +10,7 @@ import white.box.tester.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by Max on 10/27/2016.
@@ -31,7 +33,7 @@ public class ContactAddInGroupTest extends TestBase {
   }
 
   @BeforeMethod
-  public void ensurePreconditionsContacts() {
+  public void prepareContacts() {
       app.goTo().gotoHomePage();
       ContactData contact = new ContactData().withFirstname("Test23").withLastname("Test113").
               withAddress("Test4443").withHomephone("5343");
@@ -41,15 +43,13 @@ public class ContactAddInGroupTest extends TestBase {
 
     @Test
     public void testContactInGroup(){
-         Contacts before = app.db().contacts();
+
           app.getContactHelper().addContactInGroup(_contact, _group);
-      assertThat(app.getContactHelper().count(), equalTo(before.size() + 1));
-      Contacts after = app.db().contacts();
-      assertThat(after, equalTo(before.withAdded
-              (_contact.withId(after.stream().
-                      mapToInt((u) -> u.getId()).max().getAsInt()))));
+
     }
     }
+
+
 
 
 
