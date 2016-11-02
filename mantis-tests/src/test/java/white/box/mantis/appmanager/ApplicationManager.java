@@ -25,6 +25,7 @@ public class ApplicationManager {
 
   private String browser;
   private RegistrationHelper registrationHelper;
+  private ChangePassHelper changepassHelper;
 
 
   public ApplicationManager(String browser){
@@ -60,6 +61,13 @@ if (wd != null) {
     }
      return registrationHelper;
       }
+
+  public ChangePassHelper changepass() {
+    if (changepassHelper == null){
+      changepassHelper = new ChangePassHelper(this);
+    }
+    return changepassHelper;
+  }
 
   public WebDriver getDriver() {
    if (wd == null) {
