@@ -17,7 +17,6 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class ChangePassTests extends TestBase {
 
-
   @BeforeMethod
   public void startMailServer() {
     app.mail().start();
@@ -28,7 +27,7 @@ public class ChangePassTests extends TestBase {
     app.changepass().login("administrator","root");
     app.changepass().passreset(); // делаем резет пароля user55
 
-    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+    List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, "user55@localhost.localdomain");
     String user_name = "user55";
     String user_password = "wordpass";
@@ -36,13 +35,11 @@ public class ChangePassTests extends TestBase {
     assertTrue(app.newSession().login(user_name, user_password));
     }
 
-
    private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
    MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
      VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
      return regex.getText(mailMessage.text);
    }
-
 
   @AfterMethod(alwaysRun = true)
   public  void  stopMailServer() {
