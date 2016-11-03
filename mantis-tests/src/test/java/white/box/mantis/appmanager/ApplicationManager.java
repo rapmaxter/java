@@ -26,7 +26,7 @@ public class ApplicationManager {
   private String browser;
   private RegistrationHelper registrationHelper;
   private ChangePassHelper changepassHelper;
-
+  private  MailHelper mailHelper;
 
   public ApplicationManager(String browser){
     this.browser = browser;
@@ -82,5 +82,14 @@ if (wd != null) {
      wd.get(properties.getProperty("web.baseUrl"));
    }
     return wd;
+  }
+
+  public  MailHelper mail() {
+  {
+    if (mailHelper == null) {
+      mailHelper = new MailHelper(this);
+    }
+      return mailHelper;
+  }
   }
 }
