@@ -21,7 +21,16 @@ public class ChangePassHelper extends HelperBase {
   public void passreset() {
     wd.findElement(By.linkText("Manage")).click();
     wd.findElement(By.linkText("Manage Users")).click();
-    wd.findElement(By.linkText("test")).click();
+    wd.findElement(By.linkText("user55")).click();
     wd.findElement(By.xpath("//form[@id='manage-user-reset-form']/fieldset/span/input")).click();
   }
+
+  public void finish(String confirmationLink, String password) {
+    wd.get(confirmationLink);
+    type(By.name("password"), password);
+    type(By.name("password_confirm"), password);
+    click(By.cssSelector("input[value='Update User']"));
+
+  }
+
 }
