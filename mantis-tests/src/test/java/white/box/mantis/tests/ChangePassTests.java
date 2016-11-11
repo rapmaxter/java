@@ -25,16 +25,17 @@ public class ChangePassTests extends TestBase {
   @Test
   public void testPassChange() throws IOException, MessagingException {
     app.changepass().login("administrator","root");
-    app.changepass().passreset(); // делаем резет пароля user55
+    app.changepass().passreset(); // pass reset user
 
-    List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
+    List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000); // email abfangen (Bibliotek subethamail)
     String confirmationLink = findConfirmationLink(mailMessages, "user55@localhost.localdomain");
     String user_name = "user55";
     String user_password = "wordpass";
-    app.changepass().finish(confirmationLink, user_password);
+    app.changepass().finish(confirmationLink, user_password); // die Prüfung
     assertTrue(app.newSession().login(user_name, user_password));
     }
 
+  // zusätliche Bedinungen für das Abfangen des Briefes
    private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
    MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
      VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();

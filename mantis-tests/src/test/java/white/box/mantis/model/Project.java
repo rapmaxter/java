@@ -8,6 +8,17 @@ public class Project {
   private int id;
   private String name;
 
+  public String getStatus() {
+    return status;
+  }
+
+  public Project withStatus(String status) {
+    this.status = status;
+    return this;
+  }
+
+  private String status;
+
   public int getId() {
     return id;
   }

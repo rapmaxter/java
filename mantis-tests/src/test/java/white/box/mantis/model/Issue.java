@@ -1,5 +1,7 @@
 package white.box.mantis.model;
 
+import biz.futureware.mantis.rpc.soap.client.ObjectRef;
+
 /**
  * Created by Max on 11/5/2016.
  */
@@ -9,6 +11,7 @@ public class Issue {
   private  String summary;
   private  String description;
   private  Project project;
+
 
   public int getId() {
     return id;

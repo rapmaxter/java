@@ -44,4 +44,19 @@ public class Groups extends ForwardingSet<GroupData> {
     groups.remove(group);
     return groups;
   }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (this.size() != ((Groups) o).size()) {
+      return false;
+    }
+    return this.containsAll((Groups) o);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = super.hashCode();
+    result = 31 * result + (delegate != null ? delegate.hashCode() : 0);
+    return result;
+  }
 }
