@@ -136,7 +136,7 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
   }
 
-  public void approveAllarm() {
+  public void approveAllarm() {   // команда подтверждения "ОК" высплывающего окна
     wd.switchTo().alert().accept();
   }
 
