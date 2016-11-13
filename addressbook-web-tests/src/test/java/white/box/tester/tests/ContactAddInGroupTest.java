@@ -43,18 +43,8 @@ public class ContactAddInGroupTest extends TestBase {
 
     @Test
     public void testContactInGroup(){
-      Contacts beforeContacts = app.db().contacts();
-      ContactData contact = beforeContacts.iterator().next();
 
-      Groups groups = app.db().groups();
-      groups.removeAll(contact.getGroups());
-      GroupData group = groups.iterator().next();
-      app.goTo().gotoHomePage();
          app.getContactHelper().addContactInGroup(_contact, _group);
-      Contacts afterContacts = app.db().contacts();
-      ContactData contactWithGroup = afterContacts.iterator().next();
-
-      assertThat(contactWithGroup.getGroups(), equalTo(contact.getGroups().withAdded(group)));
 
     }
     }
