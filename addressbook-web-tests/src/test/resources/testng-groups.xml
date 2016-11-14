@@ -4,7 +4,6 @@
     <test name="Groups">
         <classes>
             <class name="white.box.tester.tests.GroupModificationTests"/>
-            <class name="white.box.tester.tests.GroupDeletingTests"/>
-        </classes>
+                    </classes>
     </test>
 </suite>
